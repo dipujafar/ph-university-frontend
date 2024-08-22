@@ -11,7 +11,7 @@ const Sidebar = () => {
     Faculty: "faculty",
     Student: "student"
   };
-  const role = "faculty";
+  const role = "admin";
   let sidebarItems;
 
   switch (role) {
