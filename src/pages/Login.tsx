@@ -1,59 +1,55 @@
-import { Button } from 'antd';
-import { FieldValues, useForm } from 'react-hook-form';
-import { useLoginMutation } from '../redux/feature/auth/authApi';
-import Password from 'antd/es/input/Password';
-import { useAppDispatch } from '../redux/hook';
-import { setUser, TUser } from '../redux/feature/auth/authSlice';
-import { verifyToken } from '../utils/verifyToken';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'sonner';
+import { Button, Row } from "antd";
+import { FieldValues, useForm, useFormContext } from "react-hook-form";
+import { useLoginMutation } from "../redux/feature/auth/authApi";
+import Password from "antd/es/input/Password";
+import { useAppDispatch } from "../redux/hook";
+import { setUser, TUser } from "../redux/feature/auth/authSlice";
+import { verifyToken } from "../utils/verifyToken";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import PhForm from "../components/form/PhForm";
+import PHinput from "../components/form/PHinput";
 
 const Login = () => {
-    const {register, handleSubmit} = useForm({
-        defaultValues: {
-            userId:"2025030001",
-            password: "student123",
-        }
-    }); 
-    const navigate = useNavigate();
-    const dispatch = useAppDispatch();
-    const [login] = useLoginMutation();
+  
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const [login] = useLoginMutation();
+  const  defaultValues = {
+        userId: "2025030001",
+        password: "student123",
+      }
 
-   
-
-    const onsubmit= async (data : FieldValues)=>{
-        const toastId = toast.loading("Logging in");
-        try{
-        const userInfo = {
+  const onsubmit = async (data: FieldValues) => {
+    console.log(data);
+    
+    const toastId = toast.loading("Logging in");
+    try {
+      const userInfo = {
         id: data.userId,
-        password: data.password
-       } 
-       
+        password: data.password,
+      };
+
       const res = await login(userInfo).unwrap();
 
-       const user = verifyToken(res?.data?.accessToken) as TUser;
-    
-       
-       dispatch(setUser({user:user, token: res.data.accessToken}));
-       toast.success("Logged in",{id: toastId})
-       navigate(`/${user.role}/dashboard`);
-    }catch (err){
-        toast.error("Something went wrong", {id: toastId});
+      const user = verifyToken(res?.data?.accessToken) as TUser;
+
+      dispatch(setUser({ user: user, token: res.data.accessToken }));
+      toast.success("Logged in", { id: toastId });
+      navigate(`/${user.role}/dashboard`);
+    } catch (err) {
+      toast.error("Something went wrong", { id: toastId });
     }
-    }
-    return (
-       <form onSubmit={handleSubmit(onsubmit)}>
-        <div>
-            <label htmlFor='userId'>Id : </label>
-            <input type="text" id='userId' {...register("userId")} />   
-        </div>
-        <div>
-            <label htmlFor='password'>Password : </label>
-            <input type="password" id='password' {...register("password")} />
-        </div>
-        <Button htmlType='submit'>Login</Button>
-       </form>
-    );
+  };
+  return (
+    <Row justify={"center"} align={"middle"} style={{height: "100vh"}}>
+    <PhForm onSubmit={onsubmit} defaultValues={defaultValues}>
+        <PHinput type={"text"} name={"userId"} label={"UserId"}></PHinput>
+        <PHinput type={"password"} name={"password"} label={"Password"}></PHinput>
+      <Button htmlType="submit">Login</Button>
+    </PhForm>
+    </Row>
+  );
 };
 
 export default Login;
