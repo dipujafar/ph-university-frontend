@@ -3,6 +3,7 @@ import CreateStudent from "../pages/admin/CreateStudent";
 import CreateAdmin from "../pages/admin/CreateAdmin";
 import CreateFaculty from "../pages/admin/CreateFaculty";
 import AcademicSemester from "../pages/admin/AcademicSemester";
+import CreateAcademicSemester from "../pages/admin/CreateAcademicSemester";
 
 
 
@@ -20,6 +21,11 @@ export const adminPath  = [
                 name: "Academic-semester",
                 path: "academic-semster",
                 element: <AcademicSemester></AcademicSemester>
+            },
+            {
+                name: "Create A. Semester",
+                path: "create-academic-semester",
+                element: <CreateAcademicSemester></CreateAcademicSemester>
             }
         ]
     },
