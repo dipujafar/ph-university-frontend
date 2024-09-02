@@ -11,12 +11,13 @@ const PhSelect = ({ label, name,  options }: TSelecterProps) => {
   return (
     <Controller
     name={name}
-      render={({field}) => (
+      render={({field, fieldState: {error}}) => (
         <Form.Item label={label}>
           <Select
            {...field}
             options={ options}
           />
+          {error && <small style={{color: "red"}}>{error.message}</small>}
         </Form.Item>
       )}
     />
