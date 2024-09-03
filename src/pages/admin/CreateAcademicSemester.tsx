@@ -27,11 +27,12 @@ const CreateAcademicSemester = () => {
       name, 
       code: data.name,
       year: data.year,
-      startData: data.startData, 
-      endDate: data?.endData,
+      startMonth: data.startMonth, 
+      endMonth: data?.endMonth,
     }
      try{
       const res = await addAcademicSemester(semesterData);
+      console.log(res);
      }
      catch(error){
       toast.error("Somethine went wrong")
