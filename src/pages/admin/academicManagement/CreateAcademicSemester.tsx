@@ -1,14 +1,14 @@
 import { FieldValues, SubmitHandler } from "react-hook-form";
-import PhForm from "../../components/form/PhForm";
+import PhForm from "../../../components/form/PhForm";
 import { Button, Col, Flex } from "antd";
-import PhSelect from "../../components/form/PhSelect";
-import { semesterOption } from "../../constants/semester";
-import { monthOption } from "../../constants/month";
+import PhSelect from "../../../components/form/PhSelect";
+import { semesterOption } from "../../../constants/semester";
+import { monthOption } from "../../../constants/month";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { academicSemesterSchema } from "../../schema/academicSemester.schema";
-import { useAddAcademicSemesterMutation } from "../../redux/feature/admin/academicSemester.api";
+import { academicSemesterSchema } from "../../../schema/academicSemester.schema";
+import { useAddAcademicSemesterMutation } from "../../../redux/feature/admin/academicSemester.api";
 import { toast } from "sonner";
-import { TResponse } from "../../type/global";
+import { TResponse } from "../../../type/global";
 
 const currentYear = new Date().getFullYear();
 const yearOptions = [0,1,2,3,4].map((number)=>(

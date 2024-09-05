@@ -1,9 +1,9 @@
-import AdminDashboard from "../pages/admin/AdminDashboard";
-import CreateStudent from "../pages/admin/CreateStudent";
-import CreateAdmin from "../pages/admin/CreateAdmin";
-import CreateFaculty from "../pages/admin/CreateFaculty";
-import AcademicSemester from "../pages/admin/AcademicSemester";
-import CreateAcademicSemester from "../pages/admin/CreateAcademicSemester";
+import AdminDashboard from "../pages/admin/academicManagement/AdminDashboard";
+import CreateStudent from "../pages/admin/userManagement/CreateStudent";
+import CreateAdmin from "../pages/admin/userManagement/CreateAdmin";
+import CreateFaculty from "../pages/admin/userManagement/CreateFaculty";
+import AcademicSemester from "../pages/admin/academicManagement/AcademicSemester";
+import CreateAcademicSemester from "../pages/admin/academicManagement/CreateAcademicSemester";
 
 
 
@@ -33,8 +33,8 @@ export const adminPath  = [
         name: "User Management",
         children: [
             {
-                name: "Create User",
-                path: "create-user",
+                name: "Create Student",
+                path: "create-student",
                 element: <CreateStudent></CreateStudent>
             },
             {
